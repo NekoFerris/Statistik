@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Statistik"
+             xmlns:local1="clr-namespace:Statistik.Model"
+             xmlns:local2="clr-namespace:Statistik.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:MainViewModel x:Key="mvmodel"/>
     </Application.Resources>
 </Application>
