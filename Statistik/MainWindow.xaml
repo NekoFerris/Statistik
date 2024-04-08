@@ -1,0 +1,16 @@
+﻿<Window x:Class="Statistik.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Statistik"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="dataGrid" Margin="10,10,90,304" Height="120" VerticalAlignment="Top"/>
+        <Button x:Name="btnAdd" Content="Neu" HorizontalAlignment="Right" Margin="705,10,10,10" VerticalAlignment="Top" Width="70"/>
+        <Button x:Name="BtnRem" Content="Entfernen" IsEnabled="False" HorizontalAlignment="Right" Margin="705,35,10,0" VerticalAlignment="Top" Width="70"/>
+        <Canvas Margin="0,130,0,0" Width="780" Height="299"/>
+
+    </Grid>
+</Window>
