@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace FWIWebShop
+namespace Statistik.ViewModel
 {
   public class BaseModel : INotifyPropertyChanged
   {

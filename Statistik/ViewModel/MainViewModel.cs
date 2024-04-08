@@ -1,5 +1,4 @@
-﻿using FWIWebShop;
-using Statistik.Model;
+﻿using Statistik.Model;
 
 namespace Statistik.ViewModel
 {
