@@ -1,4 +1,5 @@
 ﻿using Statistik.Model;
+using System.Drawing;
 
 namespace Statistik.ViewModel
 {

@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Statistik.Model;
+using Statistik.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,34 @@ namespace Statistik
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Rectangle> _balken = new();
+        private MainViewModel? MainViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            MainViewModel = FindResource("mvmodel") as MainViewModel;
+        }
+
+        public List<Rectangle> Balken
+        {
+            get
+            {
+                return _balken;
+            }
+        }
+
+        public void UpdateBalken()
+        {
+            if (MainViewModel != null)
+            {
+                _balken.Clear();
+                MainViewModel.DataSets.Sort((x, y) => x.Value.CompareTo(y.Value));
+                foreach (DataSet dataSet in MainViewModel.DataSets)
+                {
+
+                }
+            }
         }
     }
 }
