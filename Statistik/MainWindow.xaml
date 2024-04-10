@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Statistik"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="850
+        " SizeChanged="Window_SizeChanged"
+        MinHeight="600" MinWidth="850">
     <Grid DataContext="{StaticResource mvmodel}">
-        <DataGrid x:Name="dataGrid" Margin="10,10,90,304" Height="120" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}">
+        <DataGrid x:Name="dataGrid" Margin="10,10,90,0" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}" Height="102" VerticalAlignment="Top" CellEditEnding="dataGrid_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding Value}" Header="Wert"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAdd" Content="Neu" HorizontalAlignment="Right" Margin="705,10,10,10" VerticalAlignment="Top" Width="70"/>
-        <Button x:Name="BtnRem" Content="Entfernen" IsEnabled="False" HorizontalAlignment="Right" Margin="705,35,10,0" VerticalAlignment="Top" Width="70"/>
-        <Canvas x:Name="cnvBalken" Margin="0,130,0,0" Width="780" Height="299"/>
+        <Button x:Name="btnAdd" Content="Neu" HorizontalAlignment="Right" Margin="705,10,10,10" VerticalAlignment="Top" Width="70" Panel.ZIndex="2"/>
+        <Button x:Name="BtnRem" Content="Entfernen" IsEnabled="False" HorizontalAlignment="Right" Margin="705,35,10,0" VerticalAlignment="Top" Width="70" Panel.ZIndex="2"/>
+        <Canvas x:Name="cnvBalken" Margin="10,117,10,10" Background="#FFFFF0F0"/>
 
     </Grid>
 </Window>

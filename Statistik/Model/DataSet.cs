@@ -6,14 +6,15 @@ namespace Statistik.Model
     {
         private string? _name;
         private int _value;
-        private float _heightInPercent;
         private SolidColorBrush? _solidColorBrush;
 
         public DataSet() { }
 
         public DataSet(string? name, int value)
         {
-
+            _name = name;
+            _value = value;
+            _solidColorBrush = Brushes.Black;
         }
 
         public string? Name
@@ -36,17 +37,6 @@ namespace Statistik.Model
             set
             {
                 _value = value;
-            }
-        }
-        public float HeightInPercent
-        {
-            get
-            {
-                return _heightInPercent;
-            }
-            set
-            {
-                _heightInPercent = value;
             }
         }
         public SolidColorBrush? solidColorBrush

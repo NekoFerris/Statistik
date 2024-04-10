@@ -1,14 +1,7 @@
 ﻿using Statistik.Model;
 using Statistik.ViewModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Statistik
@@ -18,26 +11,47 @@ namespace Statistik
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Rectangle> _balken = new();
         private MainViewModel? MainViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
             MainViewModel = FindResource("mvmodel") as MainViewModel;
-        }
-
-        public List<Rectangle> Balken
-        {
-            get
-            {
-                return _balken;
-            }
+            ZeichneDiagramm();
         }
 
         public void ZeichneDiagramm()
         {
-            _balken.Clear();
+            cnvBalken.Children.Clear();
+            if (MainViewModel == null)
+                throw new NullReferenceException();
+            double abstand = (cnvBalken.ActualWidth * 0.1) / (MainViewModel.DataSets.Count + 1);
+            double breite = (cnvBalken.ActualWidth * 0.9) / (MainViewModel.DataSets.Count);
+            double rechts = abstand;
+            double hoehe = cnvBalken.ActualHeight;
+            double maxVal = MainViewModel.DataSets.Max(x => x.Value);
+            foreach (DataSet dataSet in MainViewModel.DataSets)
+            {
+                Rectangle rectangle = new();
+                rectangle.Width = breite;
+                double hoheProzent = dataSet.Value / maxVal;
+                rectangle.Height = hoehe * hoheProzent * 0.9;
+                rectangle.Fill = dataSet.solidColorBrush;
+                cnvBalken.Children.Add(rectangle);
+                Canvas.SetBottom(rectangle, 0);
+                Canvas.SetLeft(rectangle, rechts);
+                rechts += abstand + breite;
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ZeichneDiagramm();
+        }
+
+        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            ZeichneDiagramm();
         }
     }
 }
