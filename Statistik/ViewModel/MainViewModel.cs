@@ -12,6 +12,12 @@ namespace Statistik.ViewModel
             _dataSets.Add(new DataSet("Bob", 59));
             _dataSets.Add(new DataSet("Markus", 10));
             _dataSets.Add(new DataSet("Sabine", 89));
+            _dataSets.CollectionChanged += dataSetsChanged;
+        }
+
+        private void dataSetsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(DataSets));
         }
 
         public ObservableCollection<DataSet> DataSets
