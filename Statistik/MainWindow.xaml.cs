@@ -35,17 +35,9 @@ namespace Statistik
             }
         }
 
-        public void UpdateBalken()
+        public void ZeichneDiagramm()
         {
-            if (MainViewModel != null)
-            {
-                _balken.Clear();
-                MainViewModel.DataSets.Sort((x, y) => x.Value.CompareTo(y.Value));
-                foreach (DataSet dataSet in MainViewModel.DataSets)
-                {
-
-                }
-            }
+            _balken.Clear();
         }
     }
 }

@@ -6,11 +6,16 @@
         xmlns:local="clr-namespace:Statistik"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="dataGrid" Margin="10,10,90,304" Height="120" VerticalAlignment="Top"/>
+    <Grid DataContext="{StaticResource mvmodel}">
+        <DataGrid x:Name="dataGrid" Margin="10,10,90,304" Height="120" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Wert"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btnAdd" Content="Neu" HorizontalAlignment="Right" Margin="705,10,10,10" VerticalAlignment="Top" Width="70"/>
         <Button x:Name="BtnRem" Content="Entfernen" IsEnabled="False" HorizontalAlignment="Right" Margin="705,35,10,0" VerticalAlignment="Top" Width="70"/>
-        <Canvas Margin="0,130,0,0" Width="780" Height="299"/>
+        <Canvas x:Name="cnvBalken" Margin="0,130,0,0" Width="780" Height="299"/>
 
     </Grid>
 </Window>

@@ -4,11 +4,19 @@ namespace Statistik.Model
 {
     internal class DataSet
     {
-        private string _name;
+        private string? _name;
         private int _value;
-        private SolidColorBrush _solidColorBrush;
+        private float _heightInPercent;
+        private SolidColorBrush? _solidColorBrush;
 
-        public string Name
+        public DataSet() { }
+
+        public DataSet(string? name, int value)
+        {
+
+        }
+
+        public string? Name
         {
             get
             {
@@ -30,7 +38,18 @@ namespace Statistik.Model
                 _value = value;
             }
         }
-        public SolidColorBrush solidColorBrush
+        public float HeightInPercent
+        {
+            get
+            {
+                return _heightInPercent;
+            }
+            set
+            {
+                _heightInPercent = value;
+            }
+        }
+        public SolidColorBrush? solidColorBrush
         {
             get
             {
@@ -45,10 +64,15 @@ namespace Statistik.Model
         {
             get
             {
-                return _solidColorBrush.Color.R;
+                if (_solidColorBrush != null)
+                    return _solidColorBrush.Color.R;
+                else 
+                    throw new NullReferenceException();
             }
-            set 
+            set
             {
+                if (_solidColorBrush == null)
+                    throw new NullReferenceException();
                 Color color = _solidColorBrush.Color;
                 color.R = value;
                 _solidColorBrush.Color = color;
@@ -58,10 +82,15 @@ namespace Statistik.Model
         {
             get
             {
-                return _solidColorBrush.Color.G;
+                if (_solidColorBrush != null)
+                    return _solidColorBrush.Color.G;
+                else 
+                    throw new NullReferenceException();
             }
             set
             {
+                if (_solidColorBrush == null)
+                    throw new NullReferenceException();
                 Color color = _solidColorBrush.Color;
                 color.G = value;
                 _solidColorBrush.Color = color;
@@ -71,10 +100,15 @@ namespace Statistik.Model
         {
             get
             {
-                return _solidColorBrush.Color.B;
+                if (_solidColorBrush != null)
+                    return _solidColorBrush.Color.B;
+                else 
+                    throw new NullReferenceException();
             }
             set
             {
+                if (_solidColorBrush == null)
+                    throw new NullReferenceException();
                 Color color = _solidColorBrush.Color;
                 color.B = value;
                 _solidColorBrush.Color = color;
