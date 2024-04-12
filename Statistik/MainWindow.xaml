@@ -13,28 +13,34 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding Value}" Header="Wert"/>
-                <DataGridTextColumn Binding="{Binding SolidColorBrush.Color}" IsReadOnly="True" Header="Farbe"/>
-                <DataGridTextColumn Binding="{Binding ColorR}" Header="Rot"/>
-                <DataGridTemplateColumn Header="Rot">
+                <DataGridTemplateColumn Header="Farbe">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Slider Value="{Binding ColorR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                            <TextBox Text="{Binding SolidColorBrush.Color}" IsReadOnly="True" Background="{Binding SolidColorBrush, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding ColorR}" Header="Rot"/>
+                <DataGridTemplateColumn Header="Rot" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Slider Value="{Binding ColorR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255"  ValueChanged="Slider_ValueChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding ColorG}" Header="Grün"/>
-                <DataGridTemplateColumn Header="Grün">
+                <DataGridTemplateColumn Header="Grün" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Slider Value="{Binding ColorG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                            <Slider Value="{Binding ColorG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding ColorB}" Header="Blau"/>
-                <DataGridTemplateColumn Header="Blau">
+                <DataGridTemplateColumn Header="Blau" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Slider Value="{Binding ColorB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                            <Slider Value="{Binding ColorB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
