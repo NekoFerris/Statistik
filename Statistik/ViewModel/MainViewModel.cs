@@ -7,11 +7,12 @@ namespace Statistik.ViewModel
     internal class MainViewModel : BaseModel
     {
         private ObservableCollection<DataSet> _dataSets = new();
+        Random r = new();
         public MainViewModel()
         {
-            _dataSets.Add(new DataSet("Bob", 59));
-            _dataSets.Add(new DataSet("Markus", 10));
-            _dataSets.Add(new DataSet("Sabine", 89));
+            _dataSets.Add(new DataSet("Bob", r.Next(20,400)));
+            _dataSets.Add(new DataSet("Markus", r.Next(20, 400)));
+            _dataSets.Add(new DataSet("Sabine", r.Next(20, 400)));
             _dataSets.CollectionChanged += dataSetsChanged;
         }
 

@@ -9,15 +9,39 @@
         " SizeChanged="Window_SizeChanged"
         MinHeight="600" MinWidth="850">
     <Grid DataContext="{StaticResource mvmodel}">
-        <DataGrid x:Name="dataGrid" Margin="10,10,90,0" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}" Height="102" VerticalAlignment="Top" CellEditEnding="dataGrid_CellEditEnding">
+        <DataGrid x:Name="dataGrid" Margin="10,10,10,0" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}" Height="102" VerticalAlignment="Top" SelectedCellsChanged="dataGrid_SelectedCellsChanged" KeyDown="dataGrid_KeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding Value}" Header="Wert"/>
+                <DataGridTextColumn Binding="{Binding SolidColorBrush.Color}" IsReadOnly="True" Header="Farbe"/>
+                <DataGridTextColumn Binding="{Binding ColorR}" Header="Rot"/>
+                <DataGridTemplateColumn Header="Rot">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Slider Value="{Binding ColorR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding ColorG}" Header="Grün"/>
+                <DataGridTemplateColumn Header="Grün">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Slider Value="{Binding ColorG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding ColorB}" Header="Blau"/>
+                <DataGridTemplateColumn Header="Blau">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Slider Value="{Binding ColorB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" Width="100" ValueChanged="Slider_ValueChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAdd" Content="Neu" HorizontalAlignment="Right" Margin="705,10,10,10" VerticalAlignment="Top" Width="70" Panel.ZIndex="2"/>
-        <Button x:Name="BtnRem" Content="Entfernen" IsEnabled="False" HorizontalAlignment="Right" Margin="705,35,10,0" VerticalAlignment="Top" Width="70" Panel.ZIndex="2"/>
-        <Canvas x:Name="cnvBalken" Margin="10,117,10,10" Background="#FFFFF0F0"/>
+        <Canvas x:Name="cnvBalken" Margin="10,117,10,10" Background="#FFFFF0F0">
+        </Canvas>
 
     </Grid>
 </Window>

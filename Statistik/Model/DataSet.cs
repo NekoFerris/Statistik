@@ -7,14 +7,30 @@ namespace Statistik.Model
         private string? _name;
         private int _value;
         private SolidColorBrush? _solidColorBrush;
+        Random r = new();
 
-        public DataSet() { }
+        public DataSet() 
+        {
+            Name = "NoName";
+            Value = 0;
+            Color color = new Color();
+            color.A = 255;
+            color.R = 0;
+            color.G = 0;
+            color.B = 0;
+            _solidColorBrush = new SolidColorBrush(color);
+        }
 
         public DataSet(string? name, int value)
         {
             _name = name;
             _value = value;
-            _solidColorBrush = Brushes.Black;
+            Color color = new Color();
+            color.A = 255;
+            color.R = (byte)r.Next(0, 256);
+            color.G = (byte)r.Next(0, 256);
+            color.B = (byte)r.Next(0, 256);
+            _solidColorBrush = new SolidColorBrush(color);
         }
 
         public string? Name
@@ -39,7 +55,7 @@ namespace Statistik.Model
                 _value = value;
             }
         }
-        public SolidColorBrush? solidColorBrush
+        public SolidColorBrush? SolidColorBrush
         {
             get
             {
@@ -54,54 +70,54 @@ namespace Statistik.Model
         {
             get
             {
-                if (_solidColorBrush != null)
-                    return _solidColorBrush.Color.R;
-                else 
-                    throw new NullReferenceException();
+                if (SolidColorBrush != null)
+                    return SolidColorBrush.Color.R;
+                else
+                    return 0;
             }
             set
             {
-                if (_solidColorBrush == null)
+                if (SolidColorBrush == null)
                     throw new NullReferenceException();
-                Color color = _solidColorBrush.Color;
+                Color color = SolidColorBrush.Color;
                 color.R = value;
-                _solidColorBrush.Color = color;
+                SolidColorBrush.Color = color;
             }
         }
         public byte ColorG
         {
             get
             {
-                if (_solidColorBrush != null)
-                    return _solidColorBrush.Color.G;
-                else 
-                    throw new NullReferenceException();
+                if (SolidColorBrush != null)
+                    return SolidColorBrush.Color.G;
+                else
+                    return 0;
             }
             set
             {
-                if (_solidColorBrush == null)
+                if (SolidColorBrush == null)
                     throw new NullReferenceException();
-                Color color = _solidColorBrush.Color;
+                Color color = SolidColorBrush.Color;
                 color.G = value;
-                _solidColorBrush.Color = color;
+                SolidColorBrush.Color = color;
             }
         }
         public byte ColorB
         {
             get
             {
-                if (_solidColorBrush != null)
-                    return _solidColorBrush.Color.B;
-                else 
-                    throw new NullReferenceException();
+                if (SolidColorBrush != null)
+                    return SolidColorBrush.Color.B;
+                else
+                    return 0;
             }
             set
             {
-                if (_solidColorBrush == null)
+                if (SolidColorBrush == null)
                     throw new NullReferenceException();
-                Color color = _solidColorBrush.Color;
+                Color color = SolidColorBrush.Color;
                 color.B = value;
-                _solidColorBrush.Color = color;
+                SolidColorBrush.Color = color;
             }
         }
     }

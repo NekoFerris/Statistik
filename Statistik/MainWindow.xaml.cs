@@ -2,6 +2,9 @@
 using Statistik.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace Statistik
@@ -30,16 +33,39 @@ namespace Statistik
             double rechts = abstand;
             double hoehe = cnvBalken.ActualHeight;
             double maxVal = MainViewModel.DataSets.Max(x => x.Value);
+            DropShadowEffect dropShadow = new DropShadowEffect();
+            dropShadow.Color = Colors.White; // Shadow color
+            dropShadow.Direction = 0; // Angle of shadow (in degrees)
+            dropShadow.ShadowDepth = 0; // Shadow depth
+            dropShadow.BlurRadius = 10; // Shadow blur radius
             foreach (DataSet dataSet in MainViewModel.DataSets)
             {
                 Rectangle rectangle = new();
                 rectangle.Width = breite;
                 double hoheProzent = dataSet.Value / maxVal;
                 rectangle.Height = hoehe * hoheProzent * 0.9;
-                rectangle.Fill = dataSet.solidColorBrush;
+                rectangle.Fill = dataSet.SolidColorBrush;
                 cnvBalken.Children.Add(rectangle);
                 Canvas.SetBottom(rectangle, 0);
                 Canvas.SetLeft(rectangle, rechts);
+                Label label = new();
+                label.Content = dataSet.Name;
+                label.FontSize = 20;
+                label.FontWeight = FontWeights.Bold;
+                label.Width = breite;
+                label.HorizontalContentAlignment = HorizontalAlignment.Center;
+                label.Effect = dropShadow;
+                cnvBalken.Children.Add(label);
+                if ((rectangle.Height / 3) < 20)
+                {
+                    Canvas.SetBottom(label, rectangle.Height);
+                    Canvas.SetLeft(label, rechts);
+                }
+                else
+                {
+                    Canvas.SetBottom(label, rectangle.Height - 35);
+                    Canvas.SetLeft(label, rechts);
+                }
                 rechts += abstand + breite;
             }
         }
@@ -49,9 +75,29 @@ namespace Statistik
             ZeichneDiagramm();
         }
 
-        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void dataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             ZeichneDiagramm();
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ZeichneDiagramm();
+        }
+
+        private void dataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(sender != null)
+            {
+                if(((DataGrid)sender).SelectedItem != null)
+                {
+                    if (e.Key == Key.Delete)
+                    {
+                        DataGrid dataGrid = (DataGrid)sender;
+                        MainViewModel.DataSets.Remove((DataSet)dataGrid.SelectedItem);
+                    }
+                }
+            }
         }
     }
 }
