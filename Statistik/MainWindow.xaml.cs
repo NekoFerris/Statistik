@@ -75,8 +75,11 @@ namespace Statistik
 
         private void SelectDataSet(object sender, MouseButtonEventArgs e)
         {
-            if(sender is Rectangle rec)
-            MainViewModel.SelDataSet = (DataSet)rec.Tag;
+            if (sender is Rectangle rec)
+            {
+                MainViewModel.SelDataSet = (DataSet)rec.Tag;
+                dataGrid.ScrollIntoView((DataSet)rec.Tag);
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
