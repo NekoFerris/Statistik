@@ -7,6 +7,7 @@ namespace Statistik.ViewModel
     internal class MainViewModel : BaseModel
     {
         private ObservableCollection<DataSet> _dataSets = new();
+        private DataSet? _selDataSet = null;
         Random r = new();
         public MainViewModel()
         {
@@ -31,6 +32,18 @@ namespace Statistik.ViewModel
             {
                 _dataSets = value;
                 OnPropertyChanged(nameof(DataSets));
+            }
+        }
+        public DataSet SelDataSet
+        {
+            get
+            {
+                return _selDataSet;
+            }
+            set
+            {
+                _selDataSet = value;
+                OnPropertyChanged(nameof(SelDataSet));
             }
         }
     }

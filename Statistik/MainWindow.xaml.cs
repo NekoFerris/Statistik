@@ -25,9 +25,9 @@ namespace Statistik
 
         public void ZeichneDiagramm()
         {
-            cnvBalken.Children.Clear();
             if (MainViewModel == null)
                 throw new NullReferenceException();
+            cnvBalken.Children.Clear();
             double abstand = (cnvBalken.ActualWidth * 0.1) / (MainViewModel.DataSets.Count + 1);
             double breite = (cnvBalken.ActualWidth * 0.9) / (MainViewModel.DataSets.Count);
             double rechts = abstand;
@@ -45,6 +45,8 @@ namespace Statistik
                 double hoheProzent = dataSet.Value / maxVal;
                 rectangle.Height = hoehe * hoheProzent * 0.9;
                 rectangle.Fill = dataSet.SolidColorBrush;
+                rectangle.Tag = dataSet;
+                rectangle.MouseLeftButtonUp += SelectDataSet;
                 cnvBalken.Children.Add(rectangle);
                 Canvas.SetBottom(rectangle, 0);
                 Canvas.SetLeft(rectangle, rechts);
@@ -55,6 +57,7 @@ namespace Statistik
                 label.Width = breite;
                 label.HorizontalContentAlignment = HorizontalAlignment.Center;
                 label.Effect = dropShadow;
+                label.Focusable = false;
                 cnvBalken.Children.Add(label);
                 if ((rectangle.Height / 3) < 20)
                 {
@@ -68,6 +71,12 @@ namespace Statistik
                 }
                 rechts += abstand + breite;
             }
+        }
+
+        private void SelectDataSet(object sender, MouseButtonEventArgs e)
+        {
+            if(sender is Rectangle rec)
+            MainViewModel.SelDataSet = (DataSet)rec.Tag;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -94,7 +103,7 @@ namespace Statistik
                     if (e.Key == Key.Delete)
                     {
                         DataGrid dataGrid = (DataGrid)sender;
-                        MainViewModel.DataSets.Remove((DataSet)dataGrid.SelectedItem);
+                        MainViewModel.DataSets.Remove(MainViewModel.SelDataSet);
                     }
                 }
             }
