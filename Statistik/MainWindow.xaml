@@ -11,33 +11,33 @@
     <Grid DataContext="{StaticResource mvmodel}">
         <DataGrid x:Name="dataGrid" Margin="10,10,10,0" AutoGenerateColumns="False" ItemsSource="{Binding DataSets}" Height="102" VerticalAlignment="Top" SelectedCellsChanged="dataGrid_SelectedCellsChanged" KeyDown="dataGrid_KeyDown">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding Value}" Header="Wert"/>
-                <DataGridTemplateColumn Header="Farbe">
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Wert" CanUserResize="False"/>
+                <DataGridTemplateColumn Header="Farbe" CanUserReorder="False" CanUserResize="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding SolidColorBrush.Color}" IsReadOnly="True" Background="{Binding SolidColorBrush, Mode=OneWay}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding ColorR}" Header="Rot"/>
-                <DataGridTemplateColumn Header="Rot" Width="*">
+                <DataGridTextColumn Binding="{Binding ColorR}" Header="Rot" IsReadOnly="True" CanUserResize="False"/>
+                <DataGridTemplateColumn Header="Rot" Width="*" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Slider Value="{Binding ColorR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255"  ValueChanged="Slider_ValueChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding ColorG}" Header="Grün"/>
-                <DataGridTemplateColumn Header="Grün" Width="*">
+                <DataGridTextColumn Binding="{Binding ColorG}" Header="Grün" IsReadOnly="True" CanUserResize="False"/>
+                <DataGridTemplateColumn Header="Grün" Width="*" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Slider Value="{Binding ColorG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding ColorB}" Header="Blau"/>
-                <DataGridTemplateColumn Header="Blau" Width="*">
+                <DataGridTextColumn Binding="{Binding ColorB}" Header="Blau" IsReadOnly="True" CanUserResize="False"/>
+                <DataGridTemplateColumn Header="Blau" Width="*" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Slider Value="{Binding ColorB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged"/>
