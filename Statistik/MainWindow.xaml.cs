@@ -30,7 +30,7 @@ namespace Statistik
             cnvBalken.Children.Clear();
             double abstand = (cnvBalken.ActualWidth * 0.1) / (MainViewModel.DataSets.Count + 1);
             double breite = (cnvBalken.ActualWidth * 0.9) / (MainViewModel.DataSets.Count);
-            double rechts = abstand;
+            double links = abstand;
             double hoehe = cnvBalken.ActualHeight;
             double maxVal = MainViewModel.DataSets.Max(x => x.Value);
             DropShadowEffect dropShadow = new DropShadowEffect();
@@ -49,7 +49,7 @@ namespace Statistik
                 rectangle.MouseLeftButtonUp += SelectDataSet;
                 cnvBalken.Children.Add(rectangle);
                 Canvas.SetBottom(rectangle, 0);
-                Canvas.SetLeft(rectangle, rechts);
+                Canvas.SetLeft(rectangle, links);
                 Label label = new();
                 label.Content = dataSet.Name;
                 label.FontSize = 20;
@@ -62,14 +62,14 @@ namespace Statistik
                 if ((rectangle.Height / 3) < 20)
                 {
                     Canvas.SetBottom(label, rectangle.Height);
-                    Canvas.SetLeft(label, rechts);
+                    Canvas.SetLeft(label, links);
                 }
                 else
                 {
                     Canvas.SetBottom(label, rectangle.Height - 35);
-                    Canvas.SetLeft(label, rechts);
+                    Canvas.SetLeft(label, links);
                 }
-                rechts += abstand + breite;
+                links += abstand + breite;
             }
         }
 
